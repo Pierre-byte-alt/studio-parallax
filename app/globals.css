@@ -92,11 +92,27 @@ html.lenis {
   background: #6C63FF;
   color: #fff;
   border: 1px solid #6C63FF;
-  transition: background 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+  position: relative;
+  overflow: hidden;
+  z-index: 0;
+  transition: color 0.25s ease, box-shadow 0.3s ease, transform 0.2s ease;
+}
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: #ffffff;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s ease;
+  z-index: -1;
+}
+.btn-primary:hover::before {
+  transform: scaleX(1);
 }
 .btn-primary:hover {
-  background: #5A52E0;
-  box-shadow: 0 0 20px rgba(108, 99, 255, 0.4);
+  color: #0A0A0A;
+  box-shadow: 0 0 20px rgba(108, 99, 255, 0.5);
   transform: translateY(-1px);
 }
 
@@ -138,6 +154,29 @@ html.lenis {
 }
 .mobile-menu.open {
   transform: translateX(0);
+}
+
+/* ── Neon icon border ────────────────────────────────────────────────────── */
+.icon-neon-rect {
+  stroke-dasharray: 152;
+  stroke-dashoffset: 0;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.service-card:hover .icon-neon-rect {
+  opacity: 1;
+  transition: opacity 0.15s ease;
+  animation: neon-trace 0.6s linear forwards;
+  filter: drop-shadow(0 0 3px #6C63FF) drop-shadow(0 0 7px rgba(108, 99, 255, 0.45));
+}
+@keyframes neon-trace {
+  from { stroke-dashoffset: 152; }
+  to   { stroke-dashoffset: 0;   }
+}
+
+/* ── Service card 3D hover ───────────────────────────────────────────────── */
+.service-card:hover {
+  transform: perspective(800px) rotateY(3deg) rotateX(-2deg) translateY(-4px);
 }
 
 @layer utilities {

@@ -13,7 +13,7 @@ const PLANS = [
     priceMain: "800",
     priceSuffix: null,
     priceSecond: null,
-    subtitle: "Livraison en 5 à 15 jours",
+    subtitle: "Livraison garantie en 3 à 11 jours",
     desc: "Un site conçu de zéro avec design exclusif, animations fluides et toutes les fonctionnalités dont vous avez besoin.",
     features: [
       "Design exclusif sur mesure",
@@ -21,7 +21,7 @@ const PLANS = [
       "Panier et paiement Stripe si besoin",
       "Comptes utilisateurs si besoin",
       "Responsive mobile parfait",
-      "Livraison en 5 à 15 jours",
+      "Livraison garantie en 3 à 11 jours",
     ],
     priceNote: null,
     note: "E-commerce ou SaaS complexe → à partir de 2 000€",
@@ -133,13 +133,13 @@ export default function Pricing() {
         </div>
 
         {/* Cards */}
-        <div ref={cardsRef} className="grid grid-cols-1 md:grid-cols-3 gap-5 items-start">
+        <div ref={cardsRef} className="grid grid-cols-1 lg:grid-cols-3 gap-5 items-start">
           {PLANS.map((plan) => (
             <div
               key={plan.name}
               className={`pricing-card card-glow rounded-2xl p-7 border flex flex-col gap-6 ${
                 plan.featured
-                  ? "pricing-featured border-[rgba(108,99,255,0.5)] md:-translate-y-4 md:scale-105"
+                  ? "pricing-featured border-[rgba(108,99,255,0.5)] lg:-translate-y-4 lg:scale-105"
                   : "border-[#1E1E1E] bg-[#111]"
               }`}
             >

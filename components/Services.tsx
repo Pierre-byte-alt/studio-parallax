@@ -18,6 +18,7 @@ const SERVICES = [
     desc: "Nous concevons votre site de zéro — design exclusif, animations fluides, et toutes les fonctionnalités dont vous avez besoin : panier, paiement en ligne, comptes utilisateurs, tableau de bord. Aucun template, aucun compromis.",
     tags: ["Next.js", "GSAP", "Stripe", "Animations"],
     featured: false,
+    deliveryNote: "Livraison en 3 à 11 jours",
   },
   {
     icon: (
@@ -32,6 +33,7 @@ const SERVICES = [
     tags: ["Google", "ChatGPT", "Gemini", "Perplexity", "Claude"],
     featured: true,
     badge: "Service phare",
+    deliveryNote: undefined,
   },
   {
     icon: (
@@ -43,6 +45,7 @@ const SERVICES = [
     desc: "Nous construisons votre site et assurons sa visibilité en même temps. Un seul interlocuteur, une stratégie cohérente du design jusqu'au référencement. La solution la plus rentable pour votre croissance en ligne.",
     tags: ["Site", "SEO", "GEO", "Tout inclus"],
     featured: false,
+    deliveryNote: "Livraison en 3 à 11 jours",
   },
 ];
 
@@ -106,14 +109,14 @@ export default function Services() {
         {/* 3-column grid */}
         <div
           ref={cardsRef}
-          className="grid grid-cols-1 md:grid-cols-3 gap-5 items-start"
+          className="grid grid-cols-1 lg:grid-cols-3 gap-5 items-start"
         >
           {SERVICES.map((service) => (
             <div
               key={service.title}
               className={`service-card card-glow rounded-2xl p-7 border flex flex-col gap-5 ${
                 service.featured
-                  ? "border-[rgba(108,99,255,0.5)] bg-gradient-to-br from-[rgba(108,99,255,0.1)] to-[rgba(108,99,255,0.02)] md:-translate-y-3"
+                  ? "border-[rgba(108,99,255,0.5)] bg-gradient-to-br from-[rgba(108,99,255,0.1)] to-[rgba(108,99,255,0.02)] lg:-translate-y-3"
                   : "border-[#1E1E1E] bg-[#111]"
               }`}
             >
@@ -125,13 +128,27 @@ export default function Services() {
               )}
 
               <div
-                className={`w-11 h-11 rounded-xl flex items-center justify-center ${
+                className={`relative w-11 h-11 rounded-xl flex items-center justify-center ${
                   service.featured
                     ? "bg-[rgba(108,99,255,0.2)] text-[#9B97FF]"
                     : "bg-[#1A1A1A] text-[#666]"
                 }`}
               >
                 {service.icon}
+                <svg
+                  aria-hidden="true"
+                  className="absolute inset-0 w-full h-full pointer-events-none"
+                  viewBox="0 0 44 44"
+                  style={{ overflow: "visible" }}
+                >
+                  <rect
+                    className="icon-neon-rect"
+                    x="1" y="1" width="42" height="42" rx="10"
+                    fill="none"
+                    stroke="#6C63FF"
+                    strokeWidth="1.5"
+                  />
+                </svg>
               </div>
 
               <div className="flex-1">
@@ -141,6 +158,11 @@ export default function Services() {
                 <p className="text-[#666] text-[13px] leading-relaxed">
                   {service.desc}
                 </p>
+                {service.deliveryNote && (
+                  <p className="text-[12px] text-emerald-400 mt-3 font-medium">
+                    ⚡ {service.deliveryNote}
+                  </p>
+                )}
               </div>
 
               <div className="flex flex-wrap gap-2">

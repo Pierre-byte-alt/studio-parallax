@@ -17,7 +17,7 @@ export default function HeroGrid() {
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-    if (window.matchMedia("(hover: none)").matches) return;
+    if (window.matchMedia("(hover: none)").matches || window.innerWidth < 768) return;
 
     const ctx = canvas.getContext("2d");
     if (!ctx) return;

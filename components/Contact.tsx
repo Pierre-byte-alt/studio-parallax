@@ -7,10 +7,9 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
 const PROJECT_TYPES = [
-  "Site vitrine",
-  "E-commerce",
-  "Interface SaaS",
-  "SEO / GEO",
+  "Site web sur mesure",
+  "SEO + GEO",
+  "Pack complet (Site + SEO/GEO)",
   "Autre",
 ];
 
@@ -25,8 +24,9 @@ export default function Contact() {
     project: "",
     message: "",
   });
-  const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [successMsg, setSuccessMsg] = useState("");
+  const [errorMsg, setErrorMsg] = useState("");
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -67,9 +67,32 @@ export default function Contact() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    await new Promise((r) => setTimeout(r, 1000));
+    setSuccessMsg("");
+    setErrorMsg("");
+    try {
+      const response = await fetch("https://formspree.io/f/mrevbpyb", {
+        method: "POST",
+        headers: {
+          "Accept": "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          nom: form.name,
+          email: form.email,
+          type: form.project,
+          message: form.message,
+        }),
+      });
+      if (response.ok) {
+        setForm({ name: "", email: "", project: "", message: "" });
+        setSuccessMsg("Message envoyé ! Nous vous répondons sous 24-48h.");
+      } else {
+        setErrorMsg("Une erreur est survenue. Contactez-nous directement : parallax.studio.paris@gmail.com");
+      }
+    } catch {
+      setErrorMsg("Une erreur est survenue. Contactez-nous directement : parallax.studio.paris@gmail.com");
+    }
     setLoading(false);
-    setSubmitted(true);
   };
 
   return (
@@ -90,14 +113,14 @@ export default function Contact() {
                   <path d="M8 1.5C5.5 1.5 3.5 3.5 3.5 6c0 3.5 4.5 8.5 4.5 8.5s4.5-5 4.5-8.5c0-2.5-2-4.5-4.5-4.5z" stroke="#6C63FF" strokeWidth="1.2"/>
                   <circle cx="8" cy="6" r="1.5" stroke="#6C63FF" strokeWidth="1.2"/>
                 </svg>
-                Paris, France · Remote worldwide
+                Rennes, France · Remote worldwide
               </div>
               <div className="flex items-center gap-3 text-[13px] text-[#666]">
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                   <rect x="1.5" y="3.5" width="13" height="9" rx="1.5" stroke="#6C63FF" strokeWidth="1.2"/>
                   <path d="M1.5 5.5l6.5 4 6.5-4" stroke="#6C63FF" strokeWidth="1.2" strokeLinecap="round"/>
                 </svg>
-                hello@studio-parallax.fr
+                parallax.studio.paris@gmail.com
               </div>
               <div className="flex items-center gap-3 text-[13px] text-[#666]">
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
@@ -114,108 +137,99 @@ export default function Contact() {
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-8">
           {/* Main form */}
           <div className="lg:col-span-3">
-            {submitted ? (
-              <div className="rounded-2xl border border-[rgba(108,99,255,0.3)] bg-[rgba(108,99,255,0.05)] p-10 text-center">
-                <div className="w-14 h-14 rounded-full bg-[rgba(108,99,255,0.15)] border border-[rgba(108,99,255,0.3)] flex items-center justify-center mx-auto mb-5">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                    <path d="M5 12l5 5L20 7" stroke="#6C63FF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                  </svg>
-                </div>
-                <h3 className="text-xl font-bold text-[#F5F5F5] mb-2">
-                  Message envoyé !
-                </h3>
-                <p className="text-[#888] text-[14px]">
-                  Nous reviendrons vers vous dans les 24–48h.
-                </p>
-              </div>
-            ) : (
-              <form ref={formRef} onSubmit={handleSubmit} className="flex flex-col gap-4">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div className="flex flex-col gap-2">
-                    <label className="text-[12px] text-[#666] uppercase tracking-wider">
-                      Nom
-                    </label>
-                    <input
-                      type="text"
-                      name="name"
-                      value={form.name}
-                      onChange={handleChange}
-                      required
-                      placeholder="Pierre Martin"
-                      className="form-input rounded-xl px-4 py-3 text-[14px]"
-                    />
-                  </div>
-                  <div className="flex flex-col gap-2">
-                    <label className="text-[12px] text-[#666] uppercase tracking-wider">
-                      Email
-                    </label>
-                    <input
-                      type="email"
-                      name="email"
-                      value={form.email}
-                      onChange={handleChange}
-                      required
-                      placeholder="pierre@exemple.fr"
-                      className="form-input rounded-xl px-4 py-3 text-[14px]"
-                    />
-                  </div>
-                </div>
-
+            <form ref={formRef} onSubmit={handleSubmit} className="flex flex-col gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="flex flex-col gap-2">
                   <label className="text-[12px] text-[#666] uppercase tracking-wider">
-                    Type de projet
+                    Nom
                   </label>
-                  <select
-                    name="project"
-                    value={form.project}
+                  <input
+                    type="text"
+                    name="name"
+                    value={form.name}
                     onChange={handleChange}
                     required
-                    className="form-input rounded-xl px-4 py-3 text-[14px] appearance-none cursor-pointer"
-                  >
-                    <option value="" disabled>
-                      Sélectionner un type...
-                    </option>
-                    {PROJECT_TYPES.map((t) => (
-                      <option key={t} value={t} className="bg-[#111]">
-                        {t}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-
-                <div className="flex flex-col gap-2">
-                  <label className="text-[12px] text-[#666] uppercase tracking-wider">
-                    Message
-                  </label>
-                  <textarea
-                    name="message"
-                    value={form.message}
-                    onChange={handleChange}
-                    required
-                    rows={5}
-                    placeholder="Décrivez votre projet, vos objectifs, votre budget..."
-                    className="form-input rounded-xl px-4 py-3 text-[14px] resize-none"
+                    placeholder="Pierre Martin"
+                    className="form-input rounded-xl px-4 py-3 text-[14px]"
                   />
                 </div>
+                <div className="flex flex-col gap-2">
+                  <label className="text-[12px] text-[#666] uppercase tracking-wider">
+                    Email
+                  </label>
+                  <input
+                    type="email"
+                    name="email"
+                    value={form.email}
+                    onChange={handleChange}
+                    required
+                    placeholder="pierre@exemple.fr"
+                    className="form-input rounded-xl px-4 py-3 text-[14px]"
+                  />
+                </div>
+              </div>
 
-                <button
-                  type="submit"
-                  disabled={loading}
-                  className="btn-primary text-[14px] font-medium px-6 py-3.5 rounded-xl flex items-center justify-center gap-2 disabled:opacity-70"
+              <div className="flex flex-col gap-2">
+                <label className="text-[12px] text-[#666] uppercase tracking-wider">
+                  Type de projet
+                </label>
+                <select
+                  name="project"
+                  value={form.project}
+                  onChange={handleChange}
+                  required
+                  className="form-input rounded-xl px-4 py-3 text-[14px] appearance-none cursor-pointer"
                 >
-                  {loading ? (
-                    <>
-                      <svg className="animate-spin" width="16" height="16" viewBox="0 0 16 16" fill="none">
-                        <circle cx="8" cy="8" r="6" stroke="currentColor" strokeWidth="1.5" strokeDasharray="20 15"/>
-                      </svg>
-                      Envoi en cours...
-                    </>
-                  ) : (
-                    <>Envoyer le message →</>
-                  )}
-                </button>
-              </form>
-            )}
+                  <option value="" disabled>
+                    Sélectionner un type...
+                  </option>
+                  {PROJECT_TYPES.map((t) => (
+                    <option key={t} value={t} className="bg-[#111]">
+                      {t}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              <div className="flex flex-col gap-2">
+                <label className="text-[12px] text-[#666] uppercase tracking-wider">
+                  Message
+                </label>
+                <textarea
+                  name="message"
+                  value={form.message}
+                  onChange={handleChange}
+                  required
+                  rows={5}
+                  placeholder="Décrivez votre projet, vos objectifs, votre budget..."
+                  className="form-input rounded-xl px-4 py-3 text-[14px] resize-none"
+                />
+              </div>
+
+              <button
+                type="submit"
+                disabled={loading}
+                className="btn-primary text-[14px] font-medium px-6 py-3.5 rounded-xl flex items-center justify-center gap-2 disabled:opacity-70"
+              >
+                {loading ? (
+                  <>
+                    <svg className="animate-spin" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                      <circle cx="8" cy="8" r="6" stroke="currentColor" strokeWidth="1.5" strokeDasharray="20 15"/>
+                    </svg>
+                    Envoi en cours...
+                  </>
+                ) : (
+                  <>Envoyer le message →</>
+                )}
+              </button>
+
+              {successMsg && (
+                <p className="text-[13px] text-emerald-400 font-medium">{successMsg}</p>
+              )}
+              {errorMsg && (
+                <p className="text-[13px] text-red-400">{errorMsg}</p>
+              )}
+            </form>
           </div>
 
           {/* Side info */}
@@ -256,15 +270,12 @@ export default function Contact() {
               <div className="text-[11px] uppercase tracking-[0.15em] text-[#6C63FF] mb-2">
                 Disponibilité
               </div>
-              <div className="flex items-center gap-2 mb-3">
+              <div className="flex items-center gap-2">
                 <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
                 <span className="text-[13px] text-[#F5F5F5] font-medium">
-                  Disponible pour juillet 2026
+                  Disponible pour nouveaux projets
                 </span>
               </div>
-              <p className="text-[12px] text-[#555] leading-relaxed">
-                Nous acceptons 2–3 nouveaux projets par trimestre pour garantir une qualité maximale.
-              </p>
             </div>
           </div>
         </div>
