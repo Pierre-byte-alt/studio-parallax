@@ -13,6 +13,8 @@ export interface Post {
   isoDate: string;
   readingTime: number;
   excerpt: string;
+  image: string;
+  imageAlt: string;
   gradient: string;
   accentColor: string;
   blocks: ContentBlock[];
@@ -276,6 +278,8 @@ const POSTS_DATA: Omit<Post, "readingTime">[] = [
     isoDate: "2026-06-10",
     excerpt:
       "Un site lent, un design daté ou une mauvaise expérience mobile ne font pas que ne pas convaincre : ils font activement fuir vos prospects. Découvrez les signaux d'alarme et quand envisager une refonte.",
+    image: "/blog/blog-1.png",
+    imageAlt: "Refonte site web professionnel — développeur web freelance Rennes",
     gradient: "from-[#1a1a2e] via-[#16213e] to-[#0f3460]",
     accentColor: "#4ECDC4",
     blocks: article1Blocks,
@@ -290,6 +294,8 @@ const POSTS_DATA: Omit<Post, "readingTime">[] = [
     isoDate: "2026-06-03",
     excerpt:
       "ChatGPT, Gemini et Perplexity citent désormais des sources dans leurs réponses. Le GEO (Generative Engine Optimization) est la stratégie pour y figurer. Voici comment ça fonctionne.",
+    image: "/blog/blog-2.png",
+    imageAlt: "GEO optimisation IA — apparaître dans ChatGPT, Gemini et Perplexity",
     gradient: "from-[#0d0d1a] via-[#1a0a2e] to-[#2d1b69]",
     accentColor: "#9B97FF",
     blocks: article2Blocks,
@@ -304,6 +310,8 @@ const POSTS_DATA: Omit<Post, "readingTime">[] = [
     isoDate: "2026-05-25",
     excerpt:
       "Le marché de la création web affiche des prix allant de 400€ à plusieurs dizaines de milliers d'euros. Ce guide vous aide à comprendre ce qui justifie ces tarifs et ce que vous devez budgéter.",
+    image: "/blog/blog-3.png",
+    imageAlt: "Prix création site web 2026 — coût développeur web freelance",
     gradient: "from-[#1a0a0a] via-[#2e1a0a] to-[#3d1f00]",
     accentColor: "#F5A623",
     blocks: article3Blocks,

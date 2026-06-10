@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { getAllPosts } from "@/lib/posts";
 import BlogNavbar from "@/components/BlogNavbar";
@@ -49,29 +50,16 @@ export default function BlogPage() {
               key={post.slug}
               className="group rounded-2xl border border-[#1E1E1E] bg-[#111] overflow-hidden hover:border-[rgba(108,99,255,0.4)] transition-all duration-300 hover:-translate-y-1 flex flex-col"
             >
-              {/* Gradient placeholder */}
-              <div
-                className={`relative h-44 bg-gradient-to-br ${post.gradient} overflow-hidden shrink-0`}
-              >
-                <div
-                  className="absolute top-5 left-5 w-20 h-1 rounded-full opacity-40"
-                  style={{ background: post.accentColor }}
+              {/* Cover image */}
+              <div className="relative h-44 overflow-hidden shrink-0 bg-[#111]">
+                <Image
+                  src={post.image}
+                  alt={post.imageAlt}
+                  fill
+                  className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 />
-                <div
-                  className="absolute top-9 left-5 w-12 h-1 rounded-full opacity-20"
-                  style={{ background: post.accentColor }}
-                />
-                <div
-                  className="absolute bottom-6 right-6 w-24 h-24 rounded-full opacity-10"
-                  style={{
-                    background: `radial-gradient(circle, ${post.accentColor}, transparent)`,
-                  }}
-                />
-                <div
-                  className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 rounded-xl border opacity-10 rotate-12 transition-transform duration-500 group-hover:rotate-45"
-                  style={{ borderColor: post.accentColor }}
-                />
-                <div className="absolute top-3 right-3 text-[11px] text-[#555] border border-[#2a2a2a] px-2 py-1 rounded-md bg-black/40 backdrop-blur-sm">
+                <div className="absolute top-3 right-3 text-[11px] text-[#F5F5F5] border border-white/10 px-2 py-1 rounded-md bg-black/50 backdrop-blur-sm">
                   {post.readingTime} min
                 </div>
               </div>
