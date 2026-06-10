@@ -10,6 +10,7 @@ export default function Hero() {
   const sectionRef   = useRef<HTMLElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const subtitleRef  = useRef<HTMLParagraphElement>(null);
+  const sublineRef   = useRef<HTMLSpanElement>(null);
   const ctaRef       = useRef<HTMLDivElement>(null);
   const badgeRef     = useRef<HTMLDivElement>(null);
   const statsBarRef  = useRef<HTMLDivElement>(null);
@@ -24,11 +25,12 @@ export default function Hero() {
     if (!chars) return;
 
     const tl = gsap.timeline({ delay: 0.6 });
-    tl.to(badgeRef.current,   { opacity: 1, y: 0, duration: 0.5,  ease: "power3.out" })
-      .to(chars,              { opacity: 1, y: 0, duration: 0.06, stagger: 0.04, ease: "power3.out" }, "-=0.2")
-      .to(subtitleRef.current,{ opacity: 1, y: 0, duration: 0.7,  ease: "power3.out" }, "-=0.2")
-      .to(ctaRef.current,     { opacity: 1, y: 0, duration: 0.6,  ease: "power3.out" }, "-=0.4")
-      .to(statsBarRef.current,{ opacity: 1, y: 0, duration: 0.6,  ease: "power3.out" }, "-=0.3");
+    tl.to(badgeRef.current,    { opacity: 1, y: 0, duration: 0.5,  ease: "power3.out" })
+      .to(chars,               { opacity: 1, y: 0, duration: 0.06, stagger: 0.04, ease: "power3.out" }, "-=0.2")
+      .to(sublineRef.current,  { opacity: 1, duration: 0.5, ease: "power3.out" }, "-=0.1")
+      .to(subtitleRef.current, { opacity: 1, y: 0, duration: 0.7,  ease: "power3.out" }, "-=0.3")
+      .to(ctaRef.current,      { opacity: 1, y: 0, duration: 0.6,  ease: "power3.out" }, "-=0.4")
+      .to(statsBarRef.current, { opacity: 1, y: 0, duration: 0.6,  ease: "power3.out" }, "-=0.3");
   }, []);
 
   // ── Compteur animé sur les chiffres des stats ────────────────────────────
@@ -88,7 +90,7 @@ export default function Hero() {
         <h1
           ref={containerRef}
           className="text-[clamp(2rem,10vw,7.5rem)] font-bold tracking-tighter leading-none mb-6 text-[#F5F5F5]"
-          aria-label={TITLE}
+          aria-label="Studio Parallax — Création de sites web premium à Rennes"
         >
           {TITLE.split("").map((char, idx) => (
             <span
@@ -99,6 +101,13 @@ export default function Hero() {
               {char === " " ? " " : char}
             </span>
           ))}
+          <span
+            ref={sublineRef}
+            className="block text-[clamp(0.8rem,1.8vw,1rem)] font-light text-[#6C63FF] mt-3 tracking-[0.08em] uppercase"
+            style={{ opacity: 0 }}
+          >
+            Création de sites web premium à Rennes
+          </span>
         </h1>
 
         {/* Subtitle */}
@@ -106,7 +115,7 @@ export default function Hero() {
           ref={subtitleRef}
           className="text-[clamp(1rem,2.5vw,1.35rem)] text-[#888] font-light tracking-wide mb-12 opacity-0 translate-y-4"
         >
-          Nous créons votre site web sur mesure et assurons votre visibilité sur Google et les IA.
+          Développeur web freelance à Rennes — nous créons votre site web premium avec animations et optimisons votre référencement SEO & GEO sur Google et les IA.
         </p>
 
         {/* CTAs */}

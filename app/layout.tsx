@@ -4,9 +4,9 @@ import "./globals.css";
 const siteUrl = "https://studio-parallax.vercel.app";
 
 export const metadata: Metadata = {
-  title: "Studio Parallax — Création de sites web premium & SEO/GEO à Rennes",
+  title: "Studio Parallax — Développeur Web Freelance Rennes | Sites Premium & SEO/GEO",
   description:
-    "Studio Parallax crée des sites web premium avec animations sur mesure et optimise votre visibilité sur Google, ChatGPT, Gemini et Perplexity. Livraison en 5 jours. Basé à Rennes.",
+    "Studio Parallax, développeur web freelance à Rennes. Création de sites web premium avec animations GSAP, refonte de site, SEO et optimisation GEO pour ChatGPT, Gemini et Perplexity. Devis gratuit.",
   keywords: [
     "création site web Rennes",
     "développeur web freelance",

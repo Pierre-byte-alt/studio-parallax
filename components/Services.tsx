@@ -14,8 +14,8 @@ const SERVICES = [
         <path d="M7 19h8M11 16v3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
       </svg>
     ),
-    title: "Site web sur mesure",
-    desc: "Nous concevons votre site de zéro — design exclusif, animations fluides, et toutes les fonctionnalités dont vous avez besoin : panier, paiement en ligne, comptes utilisateurs, tableau de bord. Aucun template, aucun compromis.",
+    title: "Création de site web sur mesure",
+    desc: "Développeur web freelance à Rennes, nous concevons votre site de zéro — design exclusif, animations GSAP fluides, responsive parfait, panier, paiement en ligne. Idéal pour une création ou une refonte de site web premium. Aucun template, aucun compromis.",
     tags: ["Next.js", "GSAP", "Stripe", "Animations"],
     featured: false,
     deliveryNote: "Livraison en 3 à 11 jours",
@@ -28,8 +28,8 @@ const SERVICES = [
         <circle cx="12" cy="12" r="2" fill="currentColor" opacity="0.5"/>
       </svg>
     ),
-    title: "SEO + GEO",
-    desc: "Nous positionnons votre business sur Google ET dans les réponses des IA. Quand un client tape une question sur votre secteur — sur Google, ChatGPT ou Gemini — c'est vous qui apparaissez. Premiers résultats en 90 jours, mots-clés choisis avec vous.",
+    title: "SEO & GEO — Google, ChatGPT, Gemini",
+    desc: "Agence web SEO GEO à Rennes : nous positionnons votre business sur Google ET dans les réponses des IA. Quand un client recherche sur votre secteur — sur Google, ChatGPT ou Gemini — c'est vous qui apparaissez. Premiers résultats en 90 jours.",
     tags: ["Google", "ChatGPT", "Gemini", "Perplexity", "Claude"],
     featured: true,
     badge: "Service phare",
@@ -41,8 +41,8 @@ const SERVICES = [
         <path d="M11 2l2.5 5.5L19 8.5l-4 4 1 5.5L11 15.5 6 18l1-5.5-4-4 5.5-1L11 2z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round"/>
       </svg>
     ),
-    title: "Pack complet",
-    desc: "Nous construisons votre site et assurons sa visibilité en même temps. Un seul interlocuteur, une stratégie cohérente du design jusqu'au référencement. La solution la plus rentable pour votre croissance en ligne.",
+    title: "Pack Site + SEO/GEO complet",
+    desc: "Création de site web avec animations et référencement SEO/GEO intégrés dès le départ. Un seul interlocuteur pour votre site web premium et votre visibilité sur Google, ChatGPT et Gemini. La solution la plus rentable pour votre croissance.",
     tags: ["Site", "SEO", "GEO", "Tout inclus"],
     featured: false,
     deliveryNote: "Livraison en 3 à 11 jours",
@@ -53,6 +53,11 @@ export default function Services() {
   const sectionRef = useRef<HTMLElement>(null);
   const titleRef = useRef<HTMLDivElement>(null);
   const cardsRef = useRef<HTMLDivElement>(null);
+
+  const scrollTo = (href: string) => {
+    const el = document.querySelector(href);
+    if (el) el.scrollIntoView({ behavior: "smooth" });
+  };
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -98,10 +103,10 @@ export default function Services() {
           </div>
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
             <h2 className="text-[clamp(2rem,5vw,3rem)] font-bold tracking-tight text-[#F5F5F5] leading-tight">
-              Ce que nous<br />faisons pour vous
+              Création web & SEO/GEO<br />à Rennes
             </h2>
             <p className="text-[#888] text-[15px] max-w-xs leading-relaxed">
-              Trois offres claires, une vision cohérente de votre présence en ligne.
+              Développeur web freelance basé à Rennes — trois services complémentaires pour votre présence en ligne.
             </p>
           </div>
         </div>
@@ -181,6 +186,16 @@ export default function Services() {
               </div>
             </div>
           ))}
+        </div>
+
+        {/* Internal link */}
+        <div className="mt-10 text-center">
+          <button
+            onClick={() => scrollTo("#tarifs")}
+            className="text-[14px] text-[#6C63FF] hover:text-[#9B97FF] transition-colors underline underline-offset-4"
+          >
+            Voir nos tarifs →
+          </button>
         </div>
       </div>
     </section>

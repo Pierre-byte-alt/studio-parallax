@@ -70,6 +70,9 @@ export default function Footer() {
             <p className="text-[13px] text-[#555] leading-relaxed max-w-xs">
               Nous créons des sites web sur mesure et assurons votre visibilité sur Google et les IA.
             </p>
+            <p className="text-[11px] text-[#3a3a3a] leading-relaxed max-w-xs mt-2">
+              Développeur web freelance à Rennes — Création de sites web premium avec animations GSAP — SEO et GEO pour Google, ChatGPT et Gemini.
+            </p>
             <div className="flex gap-3 mt-6">
               {/* Twitter/X */}
               <a

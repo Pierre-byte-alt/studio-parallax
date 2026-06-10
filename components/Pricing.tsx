@@ -14,7 +14,7 @@ const PLANS = [
     priceSuffix: null,
     priceSecond: null,
     subtitle: "Livraison garantie en 3 à 11 jours",
-    desc: "Un site conçu de zéro avec design exclusif, animations fluides et toutes les fonctionnalités dont vous avez besoin.",
+    desc: "Création de site web sur mesure à Rennes : design exclusif, animations GSAP fluides et toutes les fonctionnalités dont vous avez besoin. Idéal pour une première création ou une refonte de site web complète.",
     features: [
       "Design exclusif sur mesure",
       "Animations GSAP + smooth scroll",
@@ -36,7 +36,7 @@ const PLANS = [
     priceSecond: null,
     priceNote: "Le tarif évolue selon la taille de votre site, la concurrence sur vos mots-clés, le nombre de pages à optimiser et la fréquence de publication de contenu. Un devis personnalisé vous sera fourni après audit gratuit.",
     subtitle: "Premiers résultats en 90 jours",
-    desc: "Visible sur Google ET cité par ChatGPT, Gemini, Perplexity et Claude. Top 3 Google visé en 3 à 6 mois.",
+    desc: "Référencement SEO à Rennes et optimisation GEO : soyez visible sur Google et cité par ChatGPT, Gemini, Perplexity et Claude. Positionnement top 3 visé sur vos mots-clés stratégiques en 3 à 6 mois.",
     features: [
       "Audit SEO complet de votre site",
       "Mots-clés ciblés choisis avec vous",
@@ -58,7 +58,7 @@ const PLANS = [
     priceSecond: "+ 150€/mois",
     priceNote: "La maintenance mensuelle couvre le suivi SEO, les optimisations continues et les rapports de performance. Tarif ajustable selon vos besoins.",
     subtitle: "La solution complète",
-    desc: "Nous construisons votre site et assurons sa visibilité en même temps. Un seul interlocuteur, une stratégie cohérente.",
+    desc: "La formule complète : création de site web premium avec animations GSAP et stratégie SEO/GEO conçues ensemble dès le départ. Un seul interlocuteur développeur web freelance pour votre site et votre visibilité sur Google, ChatGPT et Gemini.",
     features: [
       "Tout ce qui est inclus dans Site web sur mesure",
       "Tout ce qui est inclus dans SEO + GEO",
