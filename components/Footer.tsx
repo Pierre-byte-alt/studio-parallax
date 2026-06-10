@@ -13,6 +13,7 @@ const FOOTER_LINKS = {
     { label: "Pack complet", href: "#services" },
   ],
   Entreprise: [
+    { label: "Blog", href: "/blog" },
     { label: "Projets", href: "#projets" },
     { label: "Tarifs", href: "#tarifs" },
     { label: "Contact", href: "#contact" },
@@ -115,12 +116,21 @@ export default function Footer() {
               <ul className="flex flex-col gap-2.5">
                 {links.map((link) => (
                   <li key={link.label}>
-                    <button
-                      onClick={() => scrollTo(link.href)}
-                      className="text-[13px] text-[#888] hover:text-[#F5F5F5] transition-colors duration-200"
-                    >
-                      {link.label}
-                    </button>
+                    {link.href.startsWith("/") ? (
+                      <a
+                        href={link.href}
+                        className="text-[13px] text-[#888] hover:text-[#F5F5F5] transition-colors duration-200"
+                      >
+                        {link.label}
+                      </a>
+                    ) : (
+                      <button
+                        onClick={() => scrollTo(link.href)}
+                        className="text-[13px] text-[#888] hover:text-[#F5F5F5] transition-colors duration-200"
+                      >
+                        {link.label}
+                      </button>
+                    )}
                   </li>
                 ))}
               </ul>
