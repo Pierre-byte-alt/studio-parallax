@@ -17,6 +17,9 @@ export const metadata: Metadata = {
   alternates: {
     canonical: siteUrl,
   },
+  verification: {
+    google: "PV9bauj4yW_-if1M3Fu78lYohH8LKBwK_bXYfeujFP8",
+  },
   openGraph: {
     title: "Studio Parallax — Création de sites web premium & SEO/GEO à Rennes",
     description:
